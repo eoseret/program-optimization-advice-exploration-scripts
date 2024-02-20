@@ -37,6 +37,8 @@ def get_vendor_name():
     vendor = cpuinfo.get_cpu_info()['vendor_id_raw']
     if vendor == 'GenuineIntel':
         return 'intel'
+    elif vendor == 'AuthenticAMD':
+        return 'amd'
     else:
         return 'unknown'
 
@@ -63,6 +65,12 @@ def get_intel_processor_name():
             CPU = 'SKL'
         elif model == 63 or model == 79:
             CPU = 'HSW'
+        else:
+            CPU = 'OTHER'
+
+    elif family == 25:
+        if model == 17:
+            CPU = 'ZEN_V4'
         else:
             CPU = 'OTHER'
 
